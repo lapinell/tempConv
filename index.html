@@ -5,20 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
 </head>
 <body>
     <!-- In the HTML, have one input field where someone can enter in a temperature. -->
-    <form>
-        <fieldset>    
+    <form method="post">
+        <fieldset id="tempSelection">    
             <label for="temp">Enter a temperature:</label>
-            <input type="text" name="temperature" id="temp">
+            <input type="number" name="temperature" id="temp">
         </fieldset>
         <!-- Create a radio button group where Celsius or Fahrenheit can be selected as the scale that the number should be converted to. -->
-        <fieldset>   
-            <label for="tempType">Is this Celsius or Fahrenheit?</label>
-            <input id="tempType"type="radio" name="Celsius" value="celsius">
-            <input id="tempType" type="radio" name="Fahrenheit" value="fahrenheit">
+        <fieldset id="scaleSelection">   
+            <label for="scale">Which scale is your temperature in?</label>
+            
+            <input type="radio" id="celsius" name="scale" value="celsius" checked>
+            <label for="celsius">Celcius</label>
+
+            <input type="radio" id="fahrenheit" name="scale" value="fahrenheit">
+            <label for="fahrenheit">Fahrenheit</label>
+
         </fieldset>
         <!-- Create a button that, when clicked, displays the converted temperature. -->
         <input type="submit" value="Submit" id="converter">
