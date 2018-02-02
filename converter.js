@@ -1,6 +1,5 @@
 const temp = document.getElementById("temp");
-
-console.log("temp", temp);
+let printHere = document.getElementById("displayTemp");
 
 //if the radio button for Celsius is chosen
 //take the number stored in celsiusTemp and convert it to Fahrenheit 
@@ -8,6 +7,17 @@ console.log("temp", temp);
 //if the radio button for Fahrenheit is chosen
 // // take the number stored in fahrenheitTemp and convert it to Celsius
 
+function toCelsius () {
+    // Tcel = (Tfah - 32) / 1.8
+    let tCel = (temp.value - 32) / 1.8;
+    return tCel;
+};
+
+function toFahrenheit () {
+    // Tfah = (Tcel/1.8) + 32
+    let tFah = temp.value * 1.8 + 32;
+    return tFah;
+}
 
 // console.log("degF", fahrenheitScale);
 // console.log("degC", celsiusScale);
@@ -18,29 +28,38 @@ let convertedTemp = () => {
 
     const celsiusScale = document.getElementById("celsius").checked;
 
-
     switch (true) {
         case fahrenheitScale: 
             console.log("fahrenheit works");
-            function toCelsius (tF) {
-                // Tcel = (Tfah - 32) / 1.8
-                let tCel = (tF - 32) / 1.8;
-                return tCel;
-            };
-            console.log(toCelsius(temp.value));
+            printHere.innerText = toCelsius().toString() + " degrees Celsius";
             break;
         case celsiusScale:
             console.log("celsius works");
-            function toFahrenheit (tC) {
-                // Tfah = (Tcel/1.8) + 32
-                let tFah = tC * 1.8 + 32;
-                return tFah;
-            }
-            console.log(toFahrenheit(temp.value));
+            printHere.innerText = toFahrenheit().toString() + " degress Fahrenheit";
             break;
         default:
             console.log("This ain't workin right. Try again.");
     }
+};
+
+// If the temperature is greater than 90F/32C the color of the converted temperature should be red.
+// If the temperature is less than 32F/0C the color of the converted temperature should be blue.
+// For any other temperature, the color should be green.
+
+let tempColor = () => {
+    switch (true) {
+                   case toFahrenheit() > 90 || toCelsius() > 32:
+                       console.log(temp.value);
+                       console.log("red");
+                       break;
+                   case toFahrenheit() < 32 || toCelsius() < 0:
+                       console.log(temp.value)
+                       console.log("blue");
+                       break;
+                   default:
+                       console.log("green");
+               }
+
 };
 
 
@@ -53,22 +72,33 @@ const submitButton = document.getElementById("converter");
 // button.addEventListener( determineConverter);
 
 submitButton.addEventListener("click", convertedTemp);
+submitButton.addEventListener("click", tempColor);
 
 
+const resetButton = document.getElementById("resetForm");
 
-// let clearForm = () => {
-//     document.getElementById("tempConverter").reset();
-// }
+function clearForm () {
+    document.getElementById("tempConverter").reset();
+};
 
-
-
-
-// const resetButton = document.getElementById("resetForm");
-
-// resetButton.addEventListener("reset", clearForm());
+resetButton.addEventListener("click", clearForm);
 
 // Add an event handler to the input field that checks if the user pressed the enter key, and if that happens, perform the conversion.
+      
 
-// If the temperature is greater than 90F/32C the color of the converted temperature should be red.
-// If the temperature is less than 32F/0C the color of the converted temperature should be blue.
-// For any other temperature, the color should be green.
+let enterKeyStroke = () => {
+    if (event.keyCode == 13) {
+        event.preventDefault();
+        console.log("you've pressed enter");
+        convertedTemp();
+        tempColor();
+    }
+};
+
+
+temp.addEventListener("keydown", enterKeyStroke);
+
+
+
+
+
