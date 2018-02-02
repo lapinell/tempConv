@@ -3,12 +3,12 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>Temperature Converter</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
     <!-- In the HTML, have one input field where someone can enter in a temperature. -->
-    <form method="post">
+    <form method="post" id="tempConverter">
         <fieldset id="tempSelection">    
             <label for="temp">Enter a temperature:</label>
             <input type="number" name="temperature" id="temp">
@@ -25,13 +25,13 @@
 
         </fieldset>
         <!-- Create a button that, when clicked, displays the converted temperature. -->
-        <input type="submit" value="Submit" id="converter">
+        <input type="button" value="Submit" id="converter">
         <!-- Create another button that, when clicked, clears any text in the input field. -->
-        <input type="clear" value="Clear">
+        <input type="button" value="Clear" id="resetForm">
     </form>
     <!-- 
     Create a block level element that will hold the text of the converted temperature. -->
-    <section>
+    <section id="displayTemp">
 
     </section>
     
