@@ -14,28 +14,28 @@ const celsiusScale = document.getElementById("celsius").checked;
 console.log("degF", fahrenheitScale);
 console.log("degC", celsiusScale);
 
-function convertTemp(temp) {
-    switch (true) {
-        case fahrenheitScale === true: 
-            console.log("fahrenheit works");
-            function toCelsius (temp) {
-                // Tcel = (Tfah - 32) * 1.8
-                let tCel = (temp - 32) * 1.8;
-                return tCel;
-            };
-            break;
-        case celsiusScale === true:
-            console.log("celsius works");
-            function toFahrenheit (temp) {
-                // Tfah = (Tcel/1.8) + 32
-                let tFah = (temp/1.8) + 32;
-                console.log(tFah);
-            }
-            break;
-        default:
-            console.log("This ain't workin right. Try again.");
-    }
-}
+let convertedTemp = (t) => {
+                        switch (true) {
+                            case fahrenheitScale === true: 
+                                console.log("fahrenheit works");
+                                function toCelsius (temp) {
+                                    // Tcel = (Tfah - 32) * 1.8
+                                    let tCel = (temp - 32) * 1.8;
+                                    return tCel;
+                                };
+                                break;
+                            case celsiusScale === true:
+                                console.log("celsius works");
+                                function toFahrenheit (temp) {
+                                    // Tfah = (Tcel/1.8) + 32
+                                    let tFah = (temp/1.8) + 32;
+                                    return tFah;
+                                }
+                                break;
+                            default:
+                                console.log("This ain't workin right. Try again.");
+                        }
+                    };
 
 // Get a reference to the button element in the DOM
 // var button = document.getElementById("converter");
@@ -44,6 +44,13 @@ const submitButton = document.getElementById("converter");
 
 // Assign a function to be executed when the button is clicked
 // button.addEventListener( determineConverter);
+
+let submitForm = () => {
+    submitButton.addEventListener("click", console.log(convertedTemp));
+}
+
+
+
 
 
 
